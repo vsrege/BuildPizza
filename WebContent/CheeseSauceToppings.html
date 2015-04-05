@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Choose cheese,sauce and toppings</title>
+<link rel="stylesheet" type="text/css" href="pizzastyle.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="back">
+<table align="center" style="border-radius: 25px;">
+<tr>
+<td colspan="3" align="center" style="font-family:Arial;" ><h2>Build your own Pizza</h2></td>
+</tr>
+<tr>
+<ul>
+<td id="current">
+<li class="menu">SIZE & CRUST</li></td>
+<td id="current">
+<li class="menu">CHEESE & SAUCE </li></td>
+<td id="current">
+<li class="menu">TOPPINGS</li>
+</td>
+</ul>
+</tr>
+</table>
+<br/>
+<form id="reg" name="reg" method="post" action="">
+<table width="90%"  align="center">
+<tr>
+<td><h4>CHOOSE TOPPINGS</h4></td>
+</tr>
+<tr><td class="right" colspan="2"><h5>CHOOSE MEATS</h5></td><td><h5>CHOOSE NON-MEATS</h5></td></tr>
+<tr><td>
+<ul>
+<li>
+<input type="checkbox" name="toppings" id="pep" value="Pepperoni" />&nbsp;&nbsp;<label class="black">Pepperoni</label>
+</li>
+<li>
+<input type="checkbox" name="toppings" id="is" value="Italian Sausage" />&nbsp;&nbsp;<label class="black">Italian Sausage</label></li>
+<li>
+<input type="checkbox" name="toppings" id="sis" value="Sliced Italian Sausage" />&nbsp;&nbsp;<label class="black">Sliced Italian Sausage</label></li>
+<li>
+<input type="checkbox" name="toppings" id="beef" value="Beef" />&nbsp;&nbsp;<label class="black">Beef</label></li>
+<li>
+<input type="checkbox" name="toppings" id="ps" value="Philly Steak" />&nbsp;&nbsp;<label class="black">Philly Steak</label></li>
+<li>
+<input type="checkbox" name="toppings" id="ham" value="Ham" />&nbsp;&nbsp;<label class="black">Ham</label></li>
+<li>
+<input type="checkbox" name="toppings" id="bacon" value="Bacon" />&nbsp;&nbsp;<label class="black">Bacon</label></li>
+</ul>
+</td>
+<td class="right">
+<ul>
+<li>
+<input type="checkbox" name="toppings" id="sal" value="Salami" />&nbsp;&nbsp;<label class="black">Salami</label>
+</li>
+<li>
+<input type="checkbox" name="toppings" id="pc" value="Premium Chicken" />&nbsp;&nbsp;<label class="black">Premium Chicken</label></li>
+</ul>
+</td>
+<td>
+<ul>
+<li>
+<input type="checkbox" name="toppings" id="cc" value="Cheddar Cheese" />&nbsp;&nbsp;<label class="black">Cheddar Cheese</label>
+</li>
+<li>
+<input type="checkbox" name="toppings" id="fc" value="Feta Cheese" />&nbsp;&nbsp;<label class="black">Feta Cheese</label></li>
+<li>
+<input type="checkbox" name="toppings" id="spa" value="Shredded Parmesan Asiago" />&nbsp;&nbsp;<label class="black">Shredded Parmesan Asiago</label></li>
+<li>
+<input type="checkbox" name="toppings" id="spc" value="Shredded Provolone Cheese" />&nbsp;&nbsp;<label class="black">Shredded Provolone Cheese</label></li>
+<li>
+<input type="checkbox" name="toppings" id="bp" value="Banana Peppers" />&nbsp;&nbsp;<label class="black">Banana Peppers</label></li>
+<li>
+<input type="checkbox" name="toppings" id="bo" value="Black Olives" />&nbsp;&nbsp;<label class="black">Black Olives</label></li>
+<li>
+<input type="checkbox" name="toppings" id="gar" value="Garlic" />&nbsp;&nbsp;<label class="black">Garlic</label></li>
+</ul>
+</td>
+
+<td>
+<ul>
+<li>
+<input type="checkbox" name="toppings" id="green" value="Green Peppers" />&nbsp;&nbsp;<label class="black">Green Peppers</label>
+</li>
+<li>
+<input type="checkbox" name="toppings" id="jala" value="Jalapeno Peppers" />&nbsp;&nbsp;<label class="black">Jalapeno Peppers</label></li>
+<li>
+<input type="checkbox" name="toppings" id="mush" value="Mushrooms" />&nbsp;&nbsp;<label class="black">Mushrooms</label></li>
+<li>
+<input type="checkbox" name="toppings" id="pin" value="Pineapple" />&nbsp;&nbsp;<label class="black">Pineapple</label></li>
+<li>
+<input type="checkbox" name="toppings" id="oni" value="Onions" />&nbsp;&nbsp;<label class="black">Onions</label></li>
+<li>
+<input type="checkbox" name="toppings" id="red" value="Roasted Red Peppers" />&nbsp;&nbsp;<label class="black">Roasted Red Peppers</label></li>
+<li>
+<input type="checkbox" name="toppings" id="spi" value="Spinach" />&nbsp;&nbsp;<label class="black">Spinach</label></li>
+<li>
+<input type="checkbox" name="toppings" id="dt" value="Diced Tomatoes" />&nbsp;&nbsp;<label class="black">Diced Tomatoes</label></li>
+<li>
+<input type="checkbox" name="toppings" id="hot" value="Hot Sauce" />&nbsp;&nbsp;<label class="black">Hot Sauce</label></li>
+</ul>
+</td></tr>
+
+
+<tr><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;&nbsp;</td></tr>
+<tr>
+
+<td colspan="4" style="float:center;"><input id="build" type="submit" name="build" value="Build" style="align:center;margin-left:450px;"/>&nbsp;&nbsp;<input id="cancel" type="button" name="cancel" value="Cancel" /></td>
+</tr>
+<tr><td></td></tr>
+</table>
+<br/>
+</form>
+
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+$(document).ready(function()
+{ 
+	$( "#reg" ).submit(function(event) {
+		var top = new Array();
+		var finaltops = '';
+$('input[name="toppings"]:checked').each(function() {
+	
+	  top.push(this.value); 
+	   
+	});
+	finaltops = JSON.stringify(top);
+	//alert(finaltops);
+	sessionStorage.setItem("toppings", finaltops);
+	window.location.href = "PizzaReady.html";
+	
+	event.preventDefault(); 	
+});
+	
+$('#cancel').on('click', function(){
+		
+	sessionStorage.removeItem("crust");
+	  sessionStorage.removeItem("size");
+		window.location.href="SizeCrust.html";
+		
+		
+	});	
+	
+	
+});
+</script>

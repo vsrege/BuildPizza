@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   <link rel="stylesheet" type="text/css" href="pizzastyle.css"/>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </head>
+
+  <body>
+  <div id="back">
+    <!--Div that will hold the pie chart-->
+   <table align="center" style="border-radius: 25px;">
+<tr>
+<td colspan="3" align="center" style="font-family:Arial;" ><h2>Build your own Pizza</h2></td>
+</tr>
+<tr>
+<ul>
+<td id="current">
+<li class="menu">SIZE & CRUST</li></td>
+<td id="current">
+<li class="menu">CHEESE & SAUCE </li></td>
+<td id="current">
+<li class="menu">TOPPINGS</li>
+</td>
+</ul>
+</tr>
+</table>
+<br/><br/>  
+<form id="reg" name="reg">
+<br/>
+<div id="crust" align="center"></div>
+ <br/>
+<div id="size" align="center"></div>
+    <br/>
+    <div id="chart_div" align="center" style="background-color:#E6E6E6;"></div>
+    <div id="donutchart" align="center" style="background-color:#E6E6E6;"></div>
+    <br/><br/>
+    <input type="submit" id="home" value="Home" style="align:center;margin-left:500px;"/>
+    <br/><br/><br/>
+      </form>
+ </div>   
+    
+  </body>
+</html>
+ <script type="text/javascript">
+
+ 
+ 
+ 
+    
+    document.getElementById("crust").innerHTML = "Pizza Crust : "+sessionStorage.getItem("crust");
+    var size = sessionStorage.getItem("size");
+    var pizzasize='';
+    if(size=="S")
+    	{
+    	pizzasize = 'Small (10")';
+    	
+    	}
+    else if(size=="M")
+    	{
+    	pizzasize = 'Medium (12")';
+    	
+    	}
+    else if(size=="L")
+	{
+	pizzasize = 'Large (14")';
+	
+	}
+    else if(size=="XL")
+	{
+	pizzasize = 'X-Large (16")';
+	
+	}
+    document.getElementById("size").innerHTML = "Pizza Size : "+pizzasize;
+    var toppings = sessionStorage.getItem("toppings");
+    var toparray = JSON.parse(toppings.split(','));
+    
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        
+        for(i=0;i<toparray.length;i++)
+        	{
+        	
+        	data.addRows([ [toparray[i], 1],]);
+        	 
+        	}
+        
+
+        // Set chart options
+        var options = {'title':'Pizza',
+                       'width':800,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      
+      
+      
+      
+      
+      
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChartdonut);
+      function drawChartdonut() {
+    	  
+    	  var options = {
+    	          title: 'Pizza',
+    	          pieHole: 0.4,
+    	          'width':800,
+                  'height':300
+    	        };
+    	  var datadonut = new google.visualization.DataTable();
+    	  datadonut.addColumn('string', 'Topping');
+    	  datadonut.addColumn('number', 'Slices');
+    	  for(i=0;i<toparray.length;i++)
+      	{
+      	
+    		  datadonut.addRows([ [toparray[i], 1],]);
+      	 
+      	}
+
+       
+        
+       
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(datadonut, options);
+      }
+      
+      
+      $(document).ready(function()
+    		  {  
+      
+      $( "#reg" ).submit(function(event) {
+    		 
+    	  sessionStorage.removeItem("crust");
+    	  sessionStorage.removeItem("size");
+    	  sessionStorage.removeItem("toppings");
+    		 window.location.href = "SizeCrust.html";
+    		 
+    		 event.preventDefault(); 	
+    	 });
+    		  });
+    </script>

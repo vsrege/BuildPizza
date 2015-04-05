@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Choose size and crust</title>
+<link rel="stylesheet" type="text/css" href="pizzastyle.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+</head>
+<body>
+<div id="back">
+<table align="center" style="border-radius: 25px;">
+<tr>
+<td colspan="3" align="center" style="font-family:Arial;" ><h2>Build your own Pizza</h2></td>
+</tr>
+<tr>
+<ul>
+<td id="current">
+<li class="menu">SIZE & CRUST</li></td>
+<td id="notcurr">
+<li class="menu">CHEESE & SAUCE </li></td>
+<td id="notcurr">
+<li class="menu">TOPPINGS</li>
+</td>
+</ul>
+</tr>
+</table>
+<br/>
+<form id="reg" name="reg" method="post" action="">
+<table width="90%"  align="center">
+<tr>
+<td><h4>CHOOSE SIZE & CRUST</h4></td>
+</tr>
+<tr><td class="right"><h5>HAND TOSSED</h5></td><td class="right"><h5>HANDMADE PAN</h5></td><td class="right"><h5>CRUNCHY THIN CRUST</h5></td><td><h5>BROOKLYN STYLE</h5></td></tr>
+<tr><td class="right"><p class="black">
+Garlic-seasoned crust with a<br/>
+rich, buttery taste.</p></td>
+<td class="right">
+<p class="black">
+Two layers of cheese,<br/>
+toppings to the edge, and a <br/>
+crust that bakes up golden<br/>
+and crispy with a buttery<br/>
+taste.</p>
+</td>
+<td class="right">
+<p class="black">
+Thin enough for the optimum<br/> 
+crispy to crunchy ratio.
+</p>
+</td>
+<td>
+<p class="black">
+Hand stretched to be big, thin,<br/>
+and perfectly foldable.
+</p>
+</td></tr>
+<tr>
+<td class="right">
+
+<input type="radio" name="size" id="ht" value="S" />&nbsp;&nbsp;<label class="black">Small(10")</label><br/>
+<input type="radio" name="size" id="ht" value="M" />&nbsp;&nbsp;<label class="black">Medium(12")</label><br/>
+<input type="radio" name="size" id="ht" value="L" />&nbsp;&nbsp;<label class="black">Large(14")</label><br/>
+<input type="radio" name="size" id="ht" value="XL" />&nbsp;&nbsp;<label class="black">X-Large(16")</label>
+</td>
+<td class="right">
+
+<input type="radio" name="size" id="hp" value="M" />&nbsp;&nbsp;<label class="black">Medium(12")</label>
+</td>
+<td class="right">
+
+<input type="radio" name="size" id="ctc" value="M" />&nbsp;&nbsp;<label class="black">Medium(12")</label><br/>
+<input type="radio" name="size" id="ctc" value="L" />&nbsp;&nbsp;<label class="black">Large(14")</label>
+</td>
+<td>
+
+<input type="radio" name="size" id="bs" value="L" />&nbsp;&nbsp;<label class="black">Large(14")</label><br/>
+<input type="radio" name="size" id="bs" value="XL" />&nbsp;&nbsp;<label class="black">X-Large(16")</label>
+</td>
+</tr>
+<tr>
+<td><h5>GLUTEN FREE CRUST</h5></td>
+</tr>
+<tr>
+<td>
+<p class="black">
+Domino's pizza made with a<br/>
+Gluten Free Crust.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<input type="radio" name="size" id="gfc" value="S" />&nbsp;&nbsp;<label class="black">Small(10")</label><br/>
+</td>
+</tr>
+<tr><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;&nbsp;</td></tr>
+<tr>
+
+<td colspan="4" style="float:center;"><input id="build" type="submit" name="build" value="Build" style="align:center;margin-left:450px;"/>&nbsp;&nbsp;<input id="cancel" type="button" name="cancel" value="Cancel" /></td>
+</tr>
+<tr><td></td></tr>
+</table>
+<br/>
+</form>
+
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+$(document).ready(function()
+{   
+	
+	$.fn.serializeObject = function()
+	{
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function() {
+	        if (o[this.name] !== undefined) {
+	            if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	            }
+	            o[this.name].push(this.value || '');
+	        } else {
+	            o[this.name] = this.value || '';
+	        }
+	    });
+	    return o;
+	};
+	
+	
+	$( "#reg" ).submit(function(event) {
+	  
+	  		var crustname='';
+	    	var size=document.reg.size;
+	    	for (i=0; i<size.length; i++)
+	    	{
+	    	  if (size[i].checked == true)
+	    		  {
+	    		 
+	    			  var psize = size[i].value;
+	    	  		  var crust = size[i].id;
+	    	  		
+	    	 	   }
+	    	
+	    	}
+	    	
+  	  		 
+  	  		 if(crust=="gfc")
+  	  			 {
+  	  			crustname="Gluten Free Crust";
+  	  			 
+  	  			 }
+  	  		 else if(crust=="bs")
+  	  			 {
+  	  			crustname="Brooklyn Style";
+  	  			 }
+  	  	 	else if(crust=="ctc")
+			 {
+  	  	 	crustname="Crunchy Thin Crust";
+			 }
+  	  	 	else if(crust=="hp")
+  	  	 		{
+  	  	 		
+  	  	 	crustname="Handmade Pan";
+  	  	 		}
+  	  	 	else
+  	  	 		{
+  	  	 	crustname="Hand Tossed";
+  	  	 		
+  	  	 		}
+  	  		 
+  	  		
+ 	  		sessionStorage.setItem("size", psize);
+ 		 	sessionStorage.setItem("crust", crustname);
+	    	window.location.href = "CheeseSauceToppings.html";
+	  
+	    	
+	    event.preventDefault(); 	
+	   
+	});
+	
+	
+	$('#cancel').on('click', function(){
+		
+		
+		window.location.href="SizeCrust.html";
+		
+		
+	});
+	
+	
+});
+
+
+
+</script>
